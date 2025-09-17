@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap");
+@import "tailwindcss/preflight";
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
+
+
+/* Ahora sí, debajo puedes poner estilos personalizados */
+body {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 700;
+}

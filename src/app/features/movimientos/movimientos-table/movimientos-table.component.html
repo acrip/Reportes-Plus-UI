@@ -1,0 +1,24 @@
+<div class="overflow-x-auto">
+  <table class="min-w-full border border-gray-200 text-sm">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="px-4 py-2 text-left">Tipo Doc</th>
+        <th class="px-4 py-2 text-left">ID</th>
+        <th class="px-4 py-2 text-left">Fecha</th>
+        <th class="px-4 py-2 text-left">Cuenta</th>
+        <th class="px-4 py-2 text-left">Tercero</th>
+        <th class="px-4 py-2 text-left">Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mov of data" class="border-t">
+        <td class="px-4 py-2">{{ mov.tipoDocumento }}</td>
+        <td class="px-4 py-2">{{ mov.idMovimiento }}</td>
+        <td class="px-4 py-2">{{ mov.fechaMovimiento | date:'dd/MM/yyyy' }}</td>
+        <td class="px-4 py-2">{{ mov.cuentaMovimiento }}</td>
+        <td class="px-4 py-2">{{ mov.tercero }}</td>
+        <td class="px-4 py-2 text-right">{{ mov.valorMovimiento | currency:'COP' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

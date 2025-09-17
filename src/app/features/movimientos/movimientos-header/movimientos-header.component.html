@@ -1,0 +1,54 @@
+<div class="p-4 bg-gray-100 rounded-lg shadow space-y-4">
+  <h2 class="text-3xl font-bold text-blue-900">
+    {{ data?.nombrePosgrado }}
+  </h2>
+  <h3 class="text-xl font-bold text-blue-900">
+    Informe de ejecución presupuestal - Movimientos
+  </h3>
+
+  <div class="flex items-center justify-between p-2 bg-gray-100 rounded-md">
+    <h2 class="text-lg font-semibold">Movimientos</h2>
+
+    <button (click)="onDownloadClick()"
+      class="px-3 py-1 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+      Descargar Excel
+    </button>
+  </div>
+
+  <div class="flex flex-wrap gap-4 items-center">
+    <!-- Vigencia -->
+    <div>
+      <label for="vigencia" class="block text-sm font-medium text-gray-700">
+        Vigencia
+      </label>
+      <select id="vigencia" [(ngModel)]="vigencia" (change)="onFiltersChange()"
+        class="mt-1 block w-32 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        <option *ngFor="let year of vigencias" [value]="year">
+          {{ year }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Mes -->
+    <div>
+      <label for="mes" class="block text-sm font-medium text-gray-700">
+        Mes
+      </label>
+      <select id="mes" [(ngModel)]="secuencia" (change)="onFiltersChange()"
+        class="mt-1 block w-40 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        <option *ngFor="let mes of meses" [value]="mes.value">
+          {{ mes.label }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="data" class="text-sm text-gray-600">
+    <p>
+      <span class="font-semibold">Fechas del reporte</span>
+    </p>
+    <p>
+      <span class="font-semibold">Desde: {{ data.fechaInicio }} - Hasta {{ data.fechaFin }}</span>
+    </p>
+  </div>
+</div>
