@@ -1,28 +1,65 @@
-<div class="p-4 bg-gray-100 rounded-lg shadow space-y-4">
-  <h2 class="text-3xl font-bold text-blue-900">
-    {{ data?.nombrePosgrado }}
-  </h2>
-  <h3 class="text-xl font-bold text-blue-900">
-    Informe de ejecución presupuestal - Movimientos
-  </h3>
+<div class="space-y-4">
+  <!-- Primera fila: Título + Descargar -->
+  <div class="flex items-center justify-between">
+    <div>
+      <!-- Título con subrayado -->
+      <h2 class="relative text-2xl font-bold text-uniblue-950 inline-block after:content-[''] after:block after:w-[50%] after:border-b-4 after:border-unired after:mt-1">
+        {{ data?.nombrePosgrado }}
+      </h2>
+      <h3 class="text-lg font-semibold text-uniblue-950 pt-2">
+        Informe de ejecución presupuestal - {{ tipo }}
+      </h3>
+    </div>
 
-  <div class="flex items-center justify-between p-2 bg-gray-100 rounded-md">
-    <h2 class="text-lg font-semibold">Movimientos</h2>
-
-    <button (click)="onDownloadClick()"
-      class="px-3 py-1 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
-      Descargar Excel
+    <!-- Botón Descargar -->
+    <button
+      (click)="onDownloadClick()"
+      class="px-4 py-1 rounded-lg bg-uniblue-950 text-white hover:bg-blue-800 flex items-center gap-2 mt-10"
+    >
+      <span>Descargar</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"/>
+      </svg>
     </button>
   </div>
 
-  <div class="flex flex-wrap gap-4 items-center">
-    <!-- Vigencia -->
+  <!-- Segunda fila: filtros -->
+  <div class="flex flex-wrap gap-3 items-center justify-end">
+
+
+<div>
+  <label for="destino" class="block text-sm pl-1 font-bold text-uniblue-950">Destino</label>
+  <select
+    id="destino"
+    [(ngModel)]="destino"
+    (change)="onFiltersChange()"
+    class="mt-1 block w-96 h-8 border rounded-lg border-gray-300 focus:outline-none focus:border-uniblue-950 focus:border-2 focus:ring-uniblue-950 sm:text-sm px-2"
+  >
+    <option value="">Seleccione un destino</option>
+    <option *ngFor="let destino of destinos" [value]="destino.codigo">
+      {{ destino.descripcion }}
+    </option>
+  </select>
+</div>
+
+  <div class="flex flex-wrap gap-3 items-center ml-auto">
+    <!-- Recurso -->
+     <!-- Ta vaina hace ruido, cuando lo implemente lo muestro -->
+    <!-- <div>
+      <label for="recurso" class="block text-sm pl-1 font-bold text-uniblue-950">Recurso</label>
+      <select id="recurso"
+        class="mt-1 block w-30 h-8 border rounded-lg border-gray-300 focus:border-uniblue-950 focus:border-2 focus:ring-uniblue-950 sm:text-sm px-1">
+        <option>Seleccione</option>
+      </select>
+    </div> -->
+
+    <!-- Año -->
     <div>
-      <label for="vigencia" class="block text-sm font-medium text-gray-700">
-        Vigencia
-      </label>
+      <label for="vigencia" class="block text-sm pl-1 font-bold text-uniblue-950">Vigencia</label>
       <select id="vigencia" [(ngModel)]="vigencia" (change)="onFiltersChange()"
-        class="mt-1 block w-32 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        class="mt-1 block w-30 h-8 border rounded-lg border-gray-300 focus:border-uniblue-950 focus:border-2 focus:ring-uniblue-950 sm:text-sm px-1">
         <option *ngFor="let year of vigencias" [value]="year">
           {{ year }}
         </option>
@@ -31,24 +68,14 @@
 
     <!-- Mes -->
     <div>
-      <label for="mes" class="block text-sm font-medium text-gray-700">
-        Mes
-      </label>
+      <label for="mes" class="block text-sm pl-1 font-bold text-uniblue-950">Mes</label>
       <select id="mes" [(ngModel)]="secuencia" (change)="onFiltersChange()"
-        class="mt-1 block w-40 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-        <option *ngFor="let mes of meses" [value]="mes.value">
+        class="mt-1 block w-30 h-8 border rounded-lg border-gray-300 focus:border-uniblue-950 focus:border-2 focus:ring-uniblue-950 sm:text-sm px-1">
+        <option *ngFor="let mes of meses" [value]="+mes.value">
           {{ mes.label }}
         </option>
       </select>
     </div>
-  </div>
-
-  <div *ngIf="data" class="text-sm text-gray-600">
-    <p>
-      <span class="font-semibold">Fechas del reporte</span>
-    </p>
-    <p>
-      <span class="font-semibold">Desde: {{ data.fechaInicio }} - Hasta {{ data.fechaFin }}</span>
-    </p>
+        </div>
   </div>
 </div>

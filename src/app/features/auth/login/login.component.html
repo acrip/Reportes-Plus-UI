@@ -1,0 +1,61 @@
+<div class="flex flex-col min-h-screen">
+  <div class="flex flex-1">
+    <!-- Formulario -->
+    <div class="flex w-1/2 items-center justify-center bg-gray-100 p-6">
+      <div class="w-full max-w-md space-y-6">
+        <h2 class="text-3xl font-bold text-left text-[#000066]">
+          Inicio de sesión
+        </h2>
+
+        <form class="space-y-4">
+          <!-- Email -->
+          <!-- <label class="flex items-center gap-2 rounded-lg border border-[#000066] bg-white px-3 py-2 shadow">
+            <i class="bx bx-envelope text-gray-400"></i>
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              name="userEmail"
+              class="w-full border-none bg-transparent outline-none text-[#000066] placeholder-gray-400"
+            />
+          </label> -->
+
+          <!-- Password -->
+          <!-- <label class="flex items-center gap-2 rounded-lg border border-[#000066] bg-white px-3 py-2 shadow">
+            <i class="bx bx-lock-alt text-gray-400"></i>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              name="userPassword"
+              class="w-full border-none bg-transparent outline-none text-[#000066] placeholder-gray-400"
+            />
+          </label> -->
+
+          <!-- Botón Google -->
+          <button
+            type="button"
+            (click)="login()"
+            class="flex items-center justify-center gap-2 w-full rounded-full border bg-white px-4 py-2 shadow text-[#000066] hover:bg-gray-100 transition"
+          >
+            <img src="https://img.icons8.com/color/22/000000/google-logo.png" />
+            Continuar con Google
+          </button>
+
+          <!-- Botón Submit -->
+          <!-- <input
+            type="submit"
+            value="Iniciar sesión"
+            class="w-full cursor-pointer rounded-full bg-[#000066] px-4 py-2 text-white shadow hover:bg-[#1a1a80] transition"
+          /> -->
+        </form>
+      </div>
+    </div>
+
+    <!-- Imagen -->
+    <div
+      class="hidden w-1/2 bg-cover bg-center lg:flex"
+      style="background-image: url('/image-login.webp')"
+    ></div>
+  </div>
+
+  <!-- <app-footer></app-footer> -->
+</div>

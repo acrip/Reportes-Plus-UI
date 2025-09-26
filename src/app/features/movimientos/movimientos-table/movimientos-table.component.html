@@ -1,24 +1,88 @@
 <div class="overflow-x-auto">
-  <table class="min-w-full border border-gray-200 text-sm">
-    <thead class="bg-gray-100">
+  <table class="min-w-full table-fixed text-sm">
+    <thead  class="border-b-12 border-white">
       <tr>
-        <th class="px-4 py-2 text-left">Tipo Doc</th>
-        <th class="px-4 py-2 text-left">ID</th>
-        <th class="px-4 py-2 text-left">Fecha</th>
-        <th class="px-4 py-2 text-left">Cuenta</th>
-        <th class="px-4 py-2 text-left">Tercero</th>
-        <th class="px-4 py-2 text-left">Valor</th>
+        <th class="px-4 py-2 text-left font-medium">FECHA</th>
+        <th class="px-4 py-2 text-left font-medium">TERCERO</th>
+        <th class="px-4 py-2 text-left font-medium">NOMBRE</th>
+        <th class="px-4 py-2 text-left font-medium">OBSERVACIÓN</th>
+        <th class="px-4 py-2 text-right font-medium">VALOR</th>
+        <th class="px-4 py-2 text-right font-medium">ACCIONES</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let mov of data" class="border-t">
-        <td class="px-4 py-2">{{ mov.tipoDocumento }}</td>
-        <td class="px-4 py-2">{{ mov.idMovimiento }}</td>
-        <td class="px-4 py-2">{{ mov.fechaMovimiento | date:'dd/MM/yyyy' }}</td>
-        <td class="px-4 py-2">{{ mov.cuentaMovimiento }}</td>
-        <td class="px-4 py-2">{{ mov.tercero }}</td>
-        <td class="px-4 py-2 text-right">{{ mov.valorMovimiento | currency:'COP' }}</td>
+      <tr *ngFor="let mov of data" class="hover:bg-gray-100">
+        <td class="px-4 py-1.5">{{ mov.fechaMovimiento | date:'dd/MM/yyyy' }}</td>
+        <td class="px-4 py-1.5">{{ mov.idTercero }}</td>
+        <td class="px-4 py-1.5">{{ mov.tercero }}</td>
+        <td class="px-4 py-1.5 truncate max-w-md">{{ mov.observacion }}</td>
+        <td class="px-4 py-1.5 text-right">{{ mov.valorMovimiento | currency:'COP ' }}</td>
+        <td class="px-4 py-1.5">
+          <button
+            class="text-blue-600 hover:underline"
+            (click)="abrirDetalle(mov)"
+          >
+            Ver detalle
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- Modal -->
+<div
+  *ngIf="modalOpen"
+  class="fixed inset-0 flex items-center justify-center bg-gray-500/50 z-50"
+  (click)="cerrarModal()"
+>
+  <div class="bg-white rounded-lg shadow-xl w-[800px] max-h-[90vh] overflow-y-auto p-6 relative"
+    (click)="$event.stopPropagation()">
+    <!-- Botón cerrar -->
+    <button
+      class="absolute top-3 right-3 text-gray-600 hover:text-black"
+      (click)="cerrarModal()"
+    >
+      ✕
+    </button>
+
+    <!-- Título -->
+    <h2 class="text-lg font-bold text-uniblue-950 mb-4">
+      Detalle de movimiento
+    </h2>
+
+    <div *ngIf="selectedMovimiento">
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <p class="text-uniblue-950 font-semibold">Tipo de documento</p>
+          <p>{{ selectedMovimiento?.tipoDocumento }}</p>
+        </div>
+        <div>
+          <p class="text-uniblue-950 font-semibold">Fecha</p>
+          <p>{{ selectedMovimiento?.fechaMovimiento | date }}</p>
+        </div>
+        <div>
+          <p class="text-uniblue-950 font-semibold">Número</p>
+          <p>{{ selectedMovimiento?.idMovimiento }}</p>
+        </div>
+        <div>
+          <p class="text-uniblue-950 font-semibold">Cuenta en movimiento</p>
+          <p>{{ selectedMovimiento?.cuentaMovimiento }}</p>
+        </div>
+        <div class="col-span-2">
+          <p class="text-uniblue-950 font-semibold">Observación</p>
+          <p>{{ selectedMovimiento?.observacion }}</p>
+        </div>
+      </div>
+
+      <h3 class="font-bold text-uniblue-950 mt-4 mb-2">Valores</h3>
+      <div class="grid grid-cols-5 gap-2">
+        <div><p class="text-uniblue-950 font-semibold">Definitivo</p>{{ selectedMovimiento?.valorMovimiento | currency:'COP '}}</div>
+        <div><p class="text-uniblue-950 font-semibold">Ejecutado</p>{{ selectedMovimiento?.valorMovimiento | currency:'COP '}}</div>
+        <div><p class="text-uniblue-950 font-semibold">Pagado</p>{{ selectedMovimiento?.valorMovimiento | currency:'COP '}}</div>
+        <div><p class="text-uniblue-950 font-semibold">Estado</p>{{ selectedMovimiento?.valorMovimiento | currency:'COP '}}</div>
+        <div><p class="text-uniblue-950 font-semibold">Saldo</p>{{ selectedMovimiento?.valorMovimiento | currency:'COP ' }}</div>
+      </div>
+    </div>
+  </div>
 </div>

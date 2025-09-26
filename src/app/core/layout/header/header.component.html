@@ -1,3 +1,8 @@
-    <header class="flex items-center justify-between px-4 h-full">
-      <h1 class="text-lg font-semibold">Gestión Presupuestal</h1>
-    </header>
+<header class=" flex items-center justify-between px-4 h-full">
+  <h1 class="pl-8 text-2xl font-bold text-uniblue-950">Sistema Integrado de Reportes Presupuestales -
+    Reportes Plus</h1>
+  <app-user-profile [nombre]="'Jorge Andrés Zapata'" [rol]="'Administrador'" [avatarUrl]="'avatar.png'" class="pr-8"  (click)="toggleDropdown()" ></app-user-profile>
+</header>
+  <div *ngIf="userPanelOpen" class="dropdown-menu">
+    <button class="logout-button" (click)="logOut()">Cerrar Sesión</button>
+  </div>

@@ -11,19 +11,18 @@ import { FooterComponent } from './footer/footer.component';
   template: `
     <div class="flex h-screen">
       <!-- Sidebar -->
-      <app-sidebar class="w-1/6 bg-blue-600 text-white"></app-sidebar>
+      <app-sidebar class="w-1/7 bg-uniblue-950 text-white"></app-sidebar>
 
       <!-- Main content -->
       <div class="flex flex-col flex-1">
-        <app-header class="h-16 bg-purple-600 text-white"></app-header>
-
-        <main class="flex-1 overflow-y-auto p-4 bg-gray-100">
+        <app-header class="h-[70px] bg-white text-blue-900 shadow-md/15 shadow-uniblue-900 z-1"></app-header>
+        <main class="flex-1 overflow-y-auto px-16 py-10 bg-white">
           <router-outlet></router-outlet>
         </main>
 
-        <app-footer class="h-12 bg-orange-600 text-white"></app-footer>
+        <app-footer class="h-12 bg-white text-gray-500"></app-footer>
       </div>
     </div>
   `
 })
-export class LayoutComponent {}
+export class LayoutComponent { }

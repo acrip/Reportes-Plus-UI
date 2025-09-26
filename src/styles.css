@@ -3,8 +3,21 @@
 @import "tailwindcss/theme";
 @import "tailwindcss/utilities";
 
+@theme {
+  --color-uniblue-50: #f1f4ff;
+  --color-uniblue-100: #e5e8ff;
+  --color-uniblue-200: #ced5ff;
+  --color-uniblue-300: #a7b1ff;
+  --color-uniblue-400: #767fff;
+  --color-uniblue-500: #3f42ff;
+  --color-uniblue-600: #2118ff;
+  --color-uniblue-700: #1007fa;
+  --color-uniblue-800: #0d05d2;
+  --color-uniblue-900: #0c06ac;
+  --color-uniblue-950: #000066;
+  --color-unired: #db141c;
+}
 
-/* Ahora sí, debajo puedes poner estilos personalizados */
 body {
   font-family: 'Titillium Web', sans-serif;
 }

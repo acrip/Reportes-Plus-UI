@@ -14,4 +14,8 @@ export interface MovimientosResponse {
   fechaInicio: string;
   fechaFin: string;
   movimientos: Movimiento[];
+  movimientosIngresos: Movimiento[];
+  movimientosEgresos: Movimiento[];
+  movimientosDescuentos: Movimiento[];
+
 }

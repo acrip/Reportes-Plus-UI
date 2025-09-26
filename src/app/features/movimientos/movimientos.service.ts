@@ -7,7 +7,8 @@ import { MovimientosResponse } from './movimiento.model';
 export class MovimientosService {
   private api = inject(ApiService);
 
-  getMovimientos(secuencia: string, vigencia: number, destino: number): Observable<MovimientosResponse> {
+  getMovimientos(secuencia: number, vigencia: string, destino: string): Observable<MovimientosResponse> {
     return this.api.get<MovimientosResponse>('movimientos', { secuencia, vigencia, destino });
+    //return this.api.get<MovimientosResponse>('movimientos');
   }
 }

@@ -1,11 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:8080/api/v1';
 
   get<T>(
     endpoint: string,
@@ -18,11 +18,19 @@ export class ApiService {
         httpParams = httpParams.set(k, String(v));
       }
     }
-    return this.http.get<T>(`${this.baseUrl}/${endpoint}`, {
+    return this.http.get<T>(`${environment.API_URL}/${endpoint}`, {
       params: httpParams,
       context: options?.context
     });
   }
 
-  // Si luego necesitas POST/PUT/DELETE, agrega métodos equivalentes
+  post<T>(
+    endpoint: string,
+    body: unknown,
+    options?: { context?: HttpContext }
+  ): Observable<T> {
+    return this.http.post<T>(`${environment.API_URL}/${endpoint}`, body, {
+      context: options?.context
+    });
+  }
 }
