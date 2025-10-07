@@ -1,7 +1,8 @@
 export const environment = {
-   API_URL: 'http://localhost:8080/api/v1',
-   START_YEAR: 2022,
-   MONTHS: [
+  CLIENT_ID: '546111537941-5kbdoaoagsghvm746rf2sj8m8vdn6url.apps.googleusercontent.com',
+  API_URL: 'http://localhost:8080/api/v1',
+  START_YEAR: 2022,
+  MONTHS: [
     { value: '1', label: 'Enero' },
     { value: '2', label: 'Febrero' },
     { value: '3', label: 'Marzo' },

@@ -5,7 +5,15 @@
   "projects": {
     "Reportes-Plus-UI": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "skipTests": true,
+          "style": "none"
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",

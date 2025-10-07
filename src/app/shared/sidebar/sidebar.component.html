@@ -1,0 +1,47 @@
+<div class="flex flex-col items-center gap-6">
+  <a routerLink="/dashboard/movimientos" class="block">
+    <img src="logo.png" alt="Logo" class="w-40 h-auto border-b-1" />
+  </a>
+
+  <nav class="flex flex-col mt-14 w-full text-white">
+    <a routerLink="/dashboard/movimientos/todos"
+       class="flex items-center gap-3 p-2 pl-10 rounded hover:bg-uniblue-400/50">
+      <!-- List icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <span>Todos</span>
+    </a>
+
+    <a routerLink="/dashboard/movimientos/ingresos"
+       class="flex items-center gap-3 p-2 pl-10 rounded hover:bg-uniblue-400/50">
+      <!-- Trending up -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M13 7h8m0 0v8m0-8l-9 9-4-4-6 6" />
+      </svg>
+      <span>Ingresos</span>
+    </a>
+
+    <a routerLink="/dashboard/movimientos/egresos"
+       class="flex items-center gap-3 p-2 pl-10 rounded hover:bg-uniblue-400/50">
+      <!-- Trending down -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M17 13h6m0 0V7m0 6l-9-9-4 4-6-6" />
+      </svg>
+      <span>Egresos</span>
+    </a>
+
+    <a routerLink="/dashboard/movimientos/descuentos"
+       class="flex items-center gap-3 p-2 pl-10 rounded hover:bg-uniblue-400/50">
+      <!-- Percent -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M19 5L5 19M9 7a2 2 0 11-4 0 2 2 0 014 0zm10 10a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+      <span>Descuentos</span>
+    </a>
+  </nav>
+</div>
