@@ -1,8 +1,8 @@
-import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
-import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
-import { environment } from '../../../environments/environment';
-import { UserProfile } from '../models/user-profile.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {Injectable, Signal, signal, WritableSignal} from '@angular/core';
+import {OAuthService} from 'angular-oauth2-oidc';
+import {UserProfile} from '../models/user-profile.model';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {AUTH_CONFIG} from '../auth/auth-config';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +21,7 @@ export class AuthGoogleService {
   }
 
   public initAuthentication(): void {
-    const config: AuthConfig = {
-      issuer: 'https://accounts.google.com',
-      strictDiscoveryDocumentValidation: false,
-      clientId: environment.CLIENT_ID,
-      redirectUri: window.location.origin + '/home',
-      scope: 'openid profile email',
-    };
-
-    this.oAuthService.configure(config);
+    this.oAuthService.configure(AUTH_CONFIG);
     this.oAuthService.setupAutomaticSilentRefresh();
     this.oAuthService.loadDiscoveryDocumentAndTryLogin().then(() => {
       this.handleEvents();

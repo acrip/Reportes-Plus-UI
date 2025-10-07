@@ -1,17 +1,19 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {ApplicationConfig, importProvidersFrom, provideZoneChangeDetection} from '@angular/core';
+import {provideRouter} from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './core/interceptors/auth.interceptor';
-import { errorInterceptor } from './core/interceptors/error.interceptor';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import {routes} from './app.routes';
+import {provideHttpClient, withInterceptors} from '@angular/common/http';
+import {authInterceptor} from './core/interceptors/auth.interceptor';
+import {errorInterceptor} from './core/interceptors/error.interceptor';
+import {OAuthModule} from 'angular-oauth2-oidc';
+import {provideOAuthStorage} from './core/auth/auth-config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor, errorInterceptor])),
-    importProvidersFrom(OAuthModule.forRoot())
+    importProvidersFrom(OAuthModule.forRoot()),
+    provideOAuthStorage()
   ]
 };
