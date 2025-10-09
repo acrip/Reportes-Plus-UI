@@ -1,6 +1,7 @@
 export const environment = {
   CLIENT_ID: '546111537941-5kbdoaoagsghvm746rf2sj8m8vdn6url.apps.googleusercontent.com',
   API_URL: 'http://localhost:8080/api/v1',
+  APP_BASE_URL: 'https://reportes-plus.unicauca.edu.co',
   START_YEAR: 2022,
   MONTHS: [
     { value: '1', label: 'Enero' },

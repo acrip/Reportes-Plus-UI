@@ -1,5 +1,13 @@
 export interface UserProfile {
-  name: string;
   email: string;
+  email_verified: boolean;
+  given_name: string;
+  family_name: string;
+  name: string;
   picture: string;
+  role?: string;
+}
+
+export interface UserInfo {
+  info: UserProfile
 }
