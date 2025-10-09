@@ -23,7 +23,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   // Agrega Authorization si hay token
   if (authService.hasValidAccessToken()) {
-    console.warn("Has valid access token")
     headers = headers.set('Authorization', `Bearer ${authService.getAccessToken()}`);
   }
 
