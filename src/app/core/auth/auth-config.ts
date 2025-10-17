@@ -15,5 +15,5 @@ export const AUTH_CONFIG: AuthConfig = {
   clientId: environment.CLIENT_ID,
   redirectUri: `${environment.APP_BASE_URL}/home`,
   scope: 'openid profile email',
-  showDebugInformation: false,
+  showDebugInformation: true,
 };

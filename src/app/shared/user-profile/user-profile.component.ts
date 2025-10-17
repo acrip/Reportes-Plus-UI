@@ -1,8 +1,7 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {OAuthService} from 'angular-oauth2-oidc';
-import {UserProfile, UserInfo} from '../../core/models/user-profile.model';
+import { Component, computed, inject } from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 import {Router} from '@angular/router';
+import { AuthGoogleService } from '../../core/services/auth-google.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,32 +11,29 @@ import {Router} from '@angular/router';
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
-export class UserProfileComponent implements OnInit {
-  private authService = inject(OAuthService);
+export class UserProfileComponent {
+  private authService = inject(AuthGoogleService);
   private router = inject(Router);
 
-  userProfile!: UserProfile;
-  isAuthenticated = false;
+  // Usar signals directamente - reactivos y síncronos
+  userProfile = this.authService.userProfile;
+  isAuthenticated = this.authService.isAuthenticated;
+  isLoading = this.authService.isLoading;
+
+  // Signal computado para mostrar información del usuario
+  displayName = computed(() => {
+    const profile = this.userProfile();
+    return profile?.name || 'Usuario';
+  });
+
   isOpen = false;
 
-  ngOnInit(): void {
-    this.authService.loadUserProfile()
-      .then((obj: object) => {
-        this.userProfile = (obj as UserInfo).info
-        this.isAuthenticated = true;
-      })
-      .catch((err => {
-        this.isAuthenticated = false;
-        console.error("Got error loading user profile:", err)
-      }));
-  }
-
-  toggleDropdown() {
+  toggleDropdown(): void {
     this.isOpen = !this.isOpen;
   }
 
-  logOut() {
-    this.authService.logOut()
+  logOut(): void {
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 }

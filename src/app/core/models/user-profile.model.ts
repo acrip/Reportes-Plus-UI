@@ -6,6 +6,7 @@ export interface UserProfile {
   name: string;
   picture: string;
   role?: string;
+  permiso?: string;
 }
 
 export interface UserInfo {

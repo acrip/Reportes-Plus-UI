@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovimientosHeaderComponent } from './movimientos-header/movimientos-header.component';
 import { MovimientosTableComponent } from './movimientos-table/movimientos-table.component';
 import { Movimiento, MovimientosResponse } from '../../models/movimiento.model';
-import { MovimientosService } from './movimientos.service';
+import { MovimientosService } from '../../services/movimientos.service';
 import { saveAs } from 'file-saver';
 import { ActivatedRoute } from '@angular/router';
 import { Destino } from '../../models/destino.model';
@@ -72,13 +72,6 @@ export class MovimientosComponent implements OnInit {
       }
     });
   }
-
-  // cargarDestinos(): void {
-  //   this.destinosService.getDestinos().subscribe((res: Destino[]) => {
-  //     this.destinos = res;
-  //   });
-  // }
-
 
 
 

@@ -15,12 +15,8 @@ export const authGuard: CanMatchFn = async (): Promise<GuardResult> => {
     )
   );
 
-  // Verifica la autenticación una vez que el servicio está inicializado
   if (authService.isAuthenticated()) {
-    console.log('Guard: User is authenticated. Access granted.');
     return true;
   }
-
-  console.warn('Guard: User is NOT authenticated. Redirecting to /login.');
   return router.createUrlTree(['/login']);
 };

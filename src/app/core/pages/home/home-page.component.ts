@@ -1,16 +1,24 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { Component, effect, inject, OnInit } from '@angular/core';
+import { AuthGoogleService } from '../../services/auth-google.service';
 
 @Component({
   selector: 'app-home-page',
   imports: [],
   templateUrl: './home-page.component.html'
 })
-export class HomePageComponent implements OnInit {
-  private oAuthService = inject(OAuthService);
+export class HomePageComponent {
+  private authService = inject(AuthGoogleService);
 
-  ngOnInit(): void {
-    console.log('Access token: ' + this.oAuthService.getAccessToken());
-    console.log('Identity claims: ', this.oAuthService.getIdentityClaims());
+  // Signals reactivos
+  userProfile = this.authService.userProfile;
+  isAuthenticated = this.authService.isAuthenticated;
+  isLoading = this.authService.isLoading;
+
+  constructor() {
+    // Effect se ejecuta cuando los signals cambian
+    // effect(() => {
+    //   if (this.isAuthenticated() && this.userProfile()) {
+    //   }
+    // });
   }
 }
