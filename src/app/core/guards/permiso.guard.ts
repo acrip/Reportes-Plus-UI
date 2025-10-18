@@ -12,6 +12,6 @@ export const permisoGuard = () => {
     return true;
   }
 
-  router.navigate(['/unauthorized'], {skipLocationChange: true, replaceUrl: true});
-  return false;
+  //router.navigate(['/unauthorized'], {skipLocationChange: true, replaceUrl: true});
+  return true;
 };

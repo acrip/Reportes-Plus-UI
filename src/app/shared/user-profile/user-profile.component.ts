@@ -1,30 +1,50 @@
-import { Component, computed, inject } from '@angular/core';
-import {NgOptimizedImage} from '@angular/common';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
+import {NgOptimizedImage, JsonPipe } from '@angular/common';
 import {Router} from '@angular/router';
 import { AuthGoogleService } from '../../core/services/auth-google.service';
 
 @Component({
   selector: 'app-user-profile',
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    JsonPipe
   ],
-  templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  templateUrl: './user-profile.component.html'
 })
-export class UserProfileComponent {
-  private authService = inject(AuthGoogleService);
+export class UserProfileComponent implements OnInit {
+  authService = inject(AuthGoogleService);
   private router = inject(Router);
 
-  // Usar signals directamente - reactivos y síncronos
   userProfile = this.authService.userProfile;
   isAuthenticated = this.authService.isAuthenticated;
-  isLoading = this.authService.isLoading;
 
-  // Signal computado para mostrar información del usuario
+  // 👇 Computed signals para acceso más limpio
   displayName = computed(() => {
     const profile = this.userProfile();
-    return profile?.name || 'Usuario';
+    return (profile?.given_name + ' ' + profile?.family_name) || 'Caremonda';
   });
+
+  displayRole = computed(() => {
+    const profile = this.userProfile();
+    return profile?.role || profile?.permiso || 'Sin rol asignado';
+  });
+
+  displayPicture = computed(() => {
+    const profile = this.userProfile();
+    return profile?.picture || 'avatar.png';
+  });
+
+  ngOnInit(): void {
+    console.log('🔁 User profile ngOnInit:', this.userProfile());
+  }
+
+  effectUserProfile = effect(() => {
+    console.log('🔁 User profile cambió:', this.userProfile());
+  });
+
+  isLoading = computed(() =>
+    this.authService.isLoading() || !this.authService.isInitialized()
+  );
 
   isOpen = false;
 

@@ -1,3 +1,24 @@
+<!-- 🔍 PANEL DE DEBUG - BORRA ESTO DESPUÉS
+<div class="p-4 mt-200 bg-red-100 border-2 border-red-500 mb-4">
+  <h3 class="font-bold text-lg mb-2">🐛 DEBUG INFO</h3>
+  <div class="space-y-1 text-sm">
+    <p><strong>isLoading():</strong> {{ isLoading() }}</p>
+    <p><strong>isAuthenticated():</strong> {{ isAuthenticated() }}</p>
+    <p><strong>userProfile() exists:</strong> {{ !!userProfile() }}</p>
+    <p><strong>authService.isLoading():</strong> {{ authService.isLoading() }}</p>
+    <p><strong>authService.isInitialized():</strong> {{ authService.isInitialized() }}</p>
+    <hr class="my-2">
+    <p><strong>RAW userProfile():</strong></p>
+    <pre class="bg-white p-2 text-xs overflow-auto">{{ userProfile() | json }}</pre>
+    <hr class="my-2">
+    <p><strong>userProfile()?.name:</strong> {{ userProfile()?.name }}</p>
+    <p><strong>userProfile()?.given_name:</strong> {{ userProfile()?.given_name }}</p>
+    <p><strong>userProfile()?.email:</strong> {{ userProfile()?.email }}</p>
+    <p><strong>userProfile()?.picture:</strong> {{ userProfile()?.picture }}</p>
+    <p><strong>userProfile()?.permiso:</strong> {{ userProfile()?.permiso }}</p>
+  </div>
+</div> -->
+
 @if (isLoading()) {
   <!-- Skeleton loader -->
   <div class="flex items-center gap-3 animate-pulse">
@@ -7,11 +28,11 @@
       <div class="h-3 w-16 bg-gray-200 rounded"></div>
     </div>
   </div>
-} @else if (isAuthenticated()) {
+} @else if (userProfile()) {
   <div class="flex items-center gap-3 cursor-pointer" (click)="toggleDropdown()">
     <img
-      [ngSrc]="userProfile()?.picture || 'avatar.png'"
-      [alt]="'Foto de ' + (userProfile()?.name || 'usuario')"
+      [ngSrc]="displayPicture()"
+      [alt]="'Foto de ' + displayName()"
       class="w-12 h-12 rounded-full object-cover"
       width="48"
       height="48"
@@ -19,10 +40,10 @@
 
     <div class="flex flex-col">
       <span class="font-bold text-uniblue-950">
-        {{ userProfile()?.name || 'Usuario' }}
+        {{ displayName() }}
       </span>
       <span class="text-sm text-gray-600">
-        {{ userProfile()?.role || userProfile()?.permiso || 'Sin rol asignado' }}
+        {{ displayRole() }}
       </span>
     </div>
   </div>
@@ -37,4 +58,6 @@
       </button>
     </div>
   }
+} @else {
+  <div class="text-gray-500">No hay perfil disponible</div>
 }
