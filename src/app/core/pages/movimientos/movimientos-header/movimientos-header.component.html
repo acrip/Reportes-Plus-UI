@@ -4,10 +4,10 @@
     <div>
       <!-- Título con subrayado -->
       <h2 class="relative text-2xl font-bold text-uniblue-950 inline-block after:content-[''] after:block after:w-[50%] after:border-b-4 after:border-unired after:mt-1">
-        {{ data?.nombrePosgrado }}
+        <!-- {{ data?. }} -->
       </h2>
       <h3 class="text-lg font-semibold text-uniblue-950 pt-2">
-        Informe de ejecución presupuestal - {{ tipo }}
+        <!-- Informe de ejecución presupuestal - {{ tipo }} -->
       </h3>
     </div>
 
@@ -31,7 +31,7 @@
 
 <div>
   <label for="destino" class="block text-sm pl-1 font-bold text-uniblue-950">Destino</label>
-  <select
+  <!-- <select
     id="destino"
     [(ngModel)]="destino"
     (change)="onFiltersChange()"
@@ -41,7 +41,7 @@
     <option *ngFor="let destino of destinos" [value]="destino.codigo">
       {{ destino.descripcion }}
     </option>
-  </select>
+  </select> -->
 </div>
 
   <div class="flex flex-wrap gap-3 items-center ml-auto">
@@ -58,23 +58,23 @@
     <!-- Año -->
     <div>
       <label for="vigencia" class="block text-sm pl-1 font-bold text-uniblue-950">Vigencia</label>
-      <select id="vigencia" [(ngModel)]="vigencia" (change)="onFiltersChange()"
+      <!-- <select id="vigencia" [(ngModel)]="vigencia" (change)="onFiltersChange()"
         class="mt-1 block w-30 h-8 border rounded-lg border-gray-300 focus:border-uniblue-950 focus:border-2 focus:ring-uniblue-950 sm:text-sm px-1">
         <option *ngFor="let year of vigencias" [value]="year">
           {{ year }}
         </option>
-      </select>
+      </select> -->
     </div>
 
     <!-- Mes -->
     <div>
       <label for="mes" class="block text-sm pl-1 font-bold text-uniblue-950">Mes</label>
-      <select id="mes" [(ngModel)]="secuencia" (change)="onFiltersChange()"
+      <!-- <select id="mes" [(ngModel)]="secuencia" (change)="onFiltersChange()"
         class="mt-1 block w-30 h-8 border rounded-lg border-gray-300 focus:border-uniblue-950 focus:border-2 focus:ring-uniblue-950 sm:text-sm px-1">
         <option *ngFor="let mes of meses" [value]="+mes.value">
           {{ mes.label }}
         </option>
-      </select>
+      </select> -->
     </div>
         </div>
   </div>

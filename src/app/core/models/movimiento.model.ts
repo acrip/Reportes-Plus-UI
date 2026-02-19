@@ -17,5 +17,16 @@ export interface MovimientosResponse {
   movimientosIngresos: Movimiento[];
   movimientosEgresos: Movimiento[];
   movimientosDescuentos: Movimiento[];
+}
 
+export interface MovimientosParameters {
+  secuencia: number;
+  vigencia: string;
+  destino: string;
+}
+
+export interface MovimientosHeaderData {
+  nombrePosgrado: string;
+  fechaInicio: string;
+  fechaFin: string;
 }
